@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: linear-gradient(-225deg, #2CD8D5 0%, #C5C1FF 56%, #FFBAC3 100%);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-image: linear-gradient(-225deg, #65379B 0%, #886AEA 53%, #6457C6 100%);;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        input[type="file"] {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 80%;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-image: linear-gradient(-225deg, #B7F8DB 0%, #50A7C2 100%);
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-image: linear-gradient(-225deg, #7DE2FC 0%, #B9B6E5 100%);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: black;
+            margin-top: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            font-size: 1rem;
+            color: #666;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flower Predictor</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/jpeg" required>
+        <button type="submit">Predict</button>
+    </form>
+    {% if prediction %}
+        <h2>Predicted Flower: {{ prediction }}</h2>
+        <img src="{{ url_for('static', filename=image_path) }}" alt="Uploaded Image" style="max-width: 300px;">
+        <p>Image path: {{ image_path }}</p> <!-- Debug info -->
+    {% endif %}
+</body>
+</html>
